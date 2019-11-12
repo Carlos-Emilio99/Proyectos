@@ -3,6 +3,8 @@
 #include <conio.h>
 #include <fstream>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -84,10 +86,10 @@ string Agregar() {
 
 string Consultar() {
 	cout << "Ha escogido la opcion de Consulta de servicios\n" << endl;
-	ifstream archivo;
+	/*ifstream archivo;
 	string texto;
 
-	archivo.open("Agregar.txt", ios::app);
+	archivo.open("Agregar.txt",ios::in);
 
 	if (archivo.fail()) {
 		cout << "no se pudo abrir el archivo" << endl;
@@ -97,7 +99,22 @@ string Consultar() {
 		getline(archivo, texto);
 		cout << texto << endl;
 	}
-	archivo.close();
+	archivo.close();*/
+	
+	FILE *archivo;
+	char caracter;
+	
+	archivo = fopen("Agregar.txt","r");
+	
+	if(archivo == NULL){
+		cout << "Error en la apertura del archivo" << endl;
+	}
+	else {
+		while((caracter = fgetc(archivo)) != EOF){
+			printf("%c",caracter);
+		}
+	}
+	fclose(archivo);
 	return 0;
 }
 
