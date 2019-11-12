@@ -20,10 +20,10 @@ int menu();
 
 string Agregar() {
 	ofstream archivo("Agregar.txt");
-	string Nombre,NSub,IDSub, ID, Precio, PSub;
-	int  op1, op2, ops1;
+	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
+	int  op1, op2, ops1,i=0,k=0;
 
-
+	system("cls");
 	do {
 		cout << "Ha escogido la opcion de Agregar Servicios" << endl;
 		cout << "1.Agregar Servicios\n2.Regresar al Menu Principal " << endl;
@@ -42,27 +42,30 @@ string Agregar() {
 			cout << "Cual es el numero de identificacion del servicio?" << endl;
 			cin >> ID;
 			fflush(stdin);
-			/*cout << "Cual es el precio del Servicio?" << endl;
-			getline(cin, Precio);
-			cout << endl;
-			system("cls");*/
-			cout << "Desea Agregar Tambien Subservicios" << endl;
-			cout << "1.Si\n2.No" << endl;
-			cin >> ops1;
+			do{
+				cout << "Desea Agregar Tambien Subservicios" << endl;
+				cout << "1.Si\n2.No" << endl;
+				cin >> ops1;
+				fflush(stdin);
+				system("cls");
+			}while(ops1 < 1 || ops1 > 2);
+			cout << "cuantos Subservicios Habran" << endl;
+			cin >> i;
 			fflush(stdin);
-
 			if (ops1 == 1);
 			{
-				cout << "Cual es el Nombre del Subservicio?"<< endl;
-				getline(cin, NSub);
-				cout << "Cual es el numero de identificacion del subservicio?"<<endl;
-				getline(cin, IDSub);
-				cout << "Cual es el precio del subservicio?" << endl;
-				getline(cin, PSub);
-				cout << endl;
-				cout << "Se agrego el Subservicio con exito...\n" << endl;
-				system("Pause");
-				system("cls");
+				for(k=0;k<i;k++){
+					cout << "Cual es el Nombre del Subservicio?"<< endl;
+					getline(cin, NSub[k]);
+					cout << "Cual es el numero de identificacion del subservicio?"<<endl;
+					getline(cin, IDSub[k]);
+					cout << "Cual es el precio del subservicio?" << endl;
+					getline(cin, PSub[k]);
+					cout << endl;
+					cout << "Se agrego el Subservicio con exito...\n" << endl;
+					system("Pause");
+					system("cls");
+				}
 			}
 			
 			cout << "1.Guardar el Servicio Completo\n 2. Regresar" << endl;
@@ -71,10 +74,16 @@ string Agregar() {
 
 			if (op2 == 1);
 			{
-				cout << "ID " << "Nombre del Servicio" << "Precio          " << endl;
-				cout << ID << Nombre << Precio << endl;
+				cout << "ID " << "\t" << "Nombre del Servicio" << endl;
+				cout << ID << "\t" << Nombre <<  endl;
 				cout << "ID " << "Nombre del Subservicio" << "Precio    " << endl;
-				cout << IDSub << "\n\n\n\n" << NSub << "\n\n" << PSub << endl;
+				for(k=0;k<i;k++){
+					cout << IDSub[k] << "\t" << NSub[k] << "\t" << PSub[k] << endl;
+				}
+				archivo << ID << "\t" << Nombre << "\n" << endl;
+				for(k=0;k<i;k++){
+					archivo << IDSub[k] << "\t" << NSub[k] << "\t" << "$" << PSub[k] << endl;
+				}
 				cout << "Se agrego el Servicio con Exito...\n";
 				system("Pause");
 				system("cls");
@@ -88,6 +97,7 @@ string Agregar() {
 }
 
 string Consultar() {
+	system("cls");
 	cout << "Ha escogido la opcion de Consulta de servicios\n" << endl;
 	/*ifstream archivo;
 	string texto;
@@ -121,6 +131,7 @@ string Consultar() {
 }
 
 string Eliminar() {
+	system("cls");
 	char Nombre[40], NSub[20];
 	int ID, Bclave, Sclave, op1, IDSub, op2;
 	cout << "Ha escogido la opcion de Eliminar Servicios" << endl;
@@ -190,6 +201,7 @@ string Eliminar() {
 }
 
 string Modificar() {
+	system("cls");
 	int ID, Bclave, IDSub, Sclave, op1, op2;
 	char Nombre[40], NewN[40], NSub[20], NewS[20];
 	float precio, P$, PSub, NP$;
@@ -261,6 +273,7 @@ string Modificar() {
 }
 
 string CrearNota() {
+	system("cls");
 	int ID, op3, op4, i, Bclave;
 	char Nombre[40];
 	float precio, Psuma;
@@ -322,6 +335,7 @@ string CrearNota() {
 }
 
 string ConsultarNota() {
+	system("cls");
 	cout << "Ha escogido la opcion de Consulta de Notas\n" << endl;
 	ifstream Temp2;
 	string texto;
@@ -341,13 +355,13 @@ string ConsultarNota() {
 }
 
 int main(){
+	system("cls");
 	menu();
 	return 0;
 }
 
-
-
 int menu() {
+	system("cls");
 	int op;
 	do {
 	
