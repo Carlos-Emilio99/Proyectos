@@ -22,7 +22,7 @@ int menu();
 string Agregar() {
 	ofstream archivo("Agregar.txt",ios::app);
 	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
-	int  op1, op2, ops1=2,i=0,k=0,v1,v2,v3,v4,z;
+	int  op1, op2,i=0,k=0,v1=1000,v2=9999,v3=01,v4=99,z;
 	bool valido = false;
 
 	system("cls");
@@ -43,10 +43,6 @@ string Agregar() {
 			cout << "Cual es el nombre del Servicio?" << endl;
 			cin >> Nombre;
 			fflush(stdin);
-			v1=1000;
-			v2=9999;
-			v3=01;
-			v4=99;
 			do{
 					cout << "Cual es el numero de identificacion del servicio?" << endl;
 					getline(cin, ID);
@@ -58,20 +54,10 @@ string Agregar() {
 			}while(!valido);
 			valido= false;
 			system("cls");
-			do{
-				cout << "Desea Agregar Tambien Subservicios" << endl;
-				cout << "1.Si\n2.No" << endl;
-				cin >> ops1;
-				fflush(stdin);
-				system("cls");
-			}while(ops1 < 1 || ops1 > 2);
-			system("cls");
 			cout << "cuantos Subservicios Habran" << endl;
 			cin >> i;
 			fflush(stdin);
 			system("cls");
-			if (ops1 == 1);
-			{
 				for(k=0;k<i;k++){
 					cout << "Cual es el Nombre del Subservicio?"<< endl;
 					getline(cin, NSub[k]);
@@ -92,7 +78,6 @@ string Agregar() {
 					};
 					system("cls");
 				}
-			}
 			cout << "Se agrego el Subservicio con exito...\n" << endl;
 			cout << endl;
 			system("Pause");
