@@ -19,19 +19,21 @@ typedef struct datos DATO;
 int menu();
 
 string Agregar() {
-	ofstream archivo("Agregar.txt");
+	ofstream archivo("Agregar.txt",ios::app);
 	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
 	int  op1, op2, ops1,i=0,k=0;
 
 	system("cls");
 	do {
 		cout << "Ha escogido la opcion de Agregar Servicios" << endl;
-		cout << "1.Agregar Servicios\n2.Regresar al Menu Principal " << endl;
-		cin >> op1;
-		fflush(stdin);
-		
+		do{
+			cout << "1.Agregar Servicios\n2.Regresar al Menu Principal " << endl;
+			cin >> op1;
+			fflush(stdin);
+		}while(op1 < 1 || op1 > 2);
 		if (op1 == 1)
 		{
+			system("cls");
 			if (!archivo.is_open())
 			{
 				archivo.open("Agregar.txt", ios::out);
@@ -39,9 +41,15 @@ string Agregar() {
 			cout << "Cual es el nombre del Servicio?" << endl;
 			cin >> Nombre;
 			fflush(stdin);
-			cout << "Cual es el numero de identificacion del servicio?" << endl;
-			cin >> ID;
-			fflush(stdin);
+			do{
+				cout << "Cual es el numero de identificacion del servicio?" << endl;
+				cin >> ID;
+				fflush(stdin);
+				if (ID<1000 || ID>9999){
+					cout << "Los numeros de Identificacion de Servicio son de 4 Digitos "<<endl;
+				}
+			}while(ID < 1000 || ID > 9999);
+			system("cls");
 			do{
 				cout << "Desea Agregar Tambien Subservicios" << endl;
 				cout << "1.Si\n2.No" << endl;
@@ -49,9 +57,11 @@ string Agregar() {
 				fflush(stdin);
 				system("cls");
 			}while(ops1 < 1 || ops1 > 2);
+			system("cls");
 			cout << "cuantos Subservicios Habran" << endl;
 			cin >> i;
 			fflush(stdin);
+			system("cls");
 			if (ops1 == 1);
 			{
 				for(k=0;k<i;k++){
@@ -61,17 +71,19 @@ string Agregar() {
 					getline(cin, IDSub[k]);
 					cout << "Cual es el precio del subservicio?" << endl;
 					getline(cin, PSub[k]);
-					cout << endl;
-					cout << "Se agrego el Subservicio con exito...\n" << endl;
-					system("Pause");
 					system("cls");
 				}
 			}
-			
-			cout << "1.Guardar el Servicio Completo\n 2. Regresar" << endl;
-			cin >> op2;
-			fflush(stdin);
-
+			cout << "Se agrego el Subservicio con exito...\n" << endl;
+			cout << endl;
+			system("Pause");
+			system("cls");
+			do{
+				cout << "1.Guardar el Servicio Completo\n 2. Regresar" << endl;
+				cin >> op2;
+				fflush(stdin);
+			}while(op2 < 1 || op2 >2);
+			system("cls");
 			if (op2 == 1);
 			{
 				cout << "ID " << "\t" << "Nombre del Servicio" << endl;
@@ -80,6 +92,7 @@ string Agregar() {
 				for(k=0;k<i;k++){
 					cout << IDSub[k] << "\t" << NSub[k] << "\t" << PSub[k] << endl;
 				}
+				archivo << endl;
 				archivo << ID << "\t" << Nombre << "\n" << endl;
 				for(k=0;k<i;k++){
 					archivo << IDSub[k] << "\t" << NSub[k] << "\t" << "$" << PSub[k] << endl;
