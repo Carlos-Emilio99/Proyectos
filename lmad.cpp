@@ -21,6 +21,8 @@ int menu();
 
 string Agregar() {
 	ofstream archivo("Agregar.txt",ios::app);
+	ofstream main("Servicio.txt",ios::app);
+	ofstream Smain("Subservicio.txt",ios::app);
 	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
 	int  op1, op2,i=0,k=0,v1=1000,v2=9999,v3=01,v4=99,z;
 	bool valido = false;
@@ -66,7 +68,7 @@ string Agregar() {
 						getline(cin, IDSub[k]);
 						stringstream mystream(IDSub[k]);
 						if(mystream >> z){
-							if(z >= v1 && z <= v2) valido = true;
+							if(z >= v3 && z <= v4) valido = true;
 						}
 						if(!valido) cout << "error Solo 2 Digitos Y ningun Caracter" << endl;
 					}while(!valido);
@@ -88,7 +90,7 @@ string Agregar() {
 				fflush(stdin);
 			}while(op2 < 1 || op2 >2);
 			system("cls");
-			if (op2 == 1);
+			if (op2 == 1)
 			{
 				cout << "ID " << "\t" << "Nombre del Servicio" << endl;
 				cout << ID << "\t" << Nombre <<  endl;
@@ -100,6 +102,12 @@ string Agregar() {
 				archivo << ID << "\t" << Nombre << "\n" << endl;
 				for(k=0;k<i;k++){
 					archivo << IDSub[k] << "\t" << NSub[k] << "\t" << "$" << PSub[k] << endl;
+				}
+				main << endl;
+				main << ID << "," << Nombre << "\n" << endl;
+				for(k=0;k<i;k++){
+					Smain << endl;
+					Smain << ID << "," << IDSub[k] << "," << NSub[k] << "," << "$" << PSub[k] << endl;
 				}
 				cout << "Se agrego el Servicio con Exito...\n";
 				system("Pause");
@@ -116,19 +124,7 @@ string Agregar() {
 string Consultar() {
 	system("cls");
 	cout << "Ha escogido la opcion de Consulta de servicios\n" << endl;
-	/*ifstream archivo;
-	string texto;
-	archivo.open("Agregar.txt",ios::in);
-	if (archivo.fail()) {
-		cout << "no se pudo abrir el archivo" << endl;
-		exit(1);
-	}
-	while (!archivo.eof()) {
-		getline(archivo, texto);
-		cout << texto << endl;
-	}
-	archivo.close();*/
-	
+		
 	FILE *archivo;
 	char caracter;
 	
