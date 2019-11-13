@@ -20,8 +20,8 @@ int menu();
 
 string Agregar() {
 	ofstream archivo("Agregar.txt",ios::app);
-	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
-	int  op1, op2, ops1,i=0,k=0;
+	string Nombre,NSub[' '],IDSub[' '], Precio, PSub[' '];
+	int  op1, op2, ops1,i=0,ID,k=0;
 
 	system("cls");
 	do {
