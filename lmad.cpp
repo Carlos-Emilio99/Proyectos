@@ -5,6 +5,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sstream>
 
 using namespace std;
 
@@ -20,8 +21,9 @@ int menu();
 
 string Agregar() {
 	ofstream archivo("Agregar.txt",ios::app);
-	string Nombre,NSub[' '],IDSub[' '], Precio, PSub[' '];
-	int  op1, op2, ops1,i=0,ID,k=0;
+	string Nombre,NSub[' '],IDSub[' '], ID, Precio, PSub[' '];
+	int  op1, op2, ops1=2,i=0,k=0,v1,v2,v3,v4,z;
+	bool valido = false;
 
 	system("cls");
 	do {
@@ -41,14 +43,20 @@ string Agregar() {
 			cout << "Cual es el nombre del Servicio?" << endl;
 			cin >> Nombre;
 			fflush(stdin);
+			v1=1000;
+			v2=9999;
+			v3=01;
+			v4=99;
 			do{
-				cout << "Cual es el numero de identificacion del servicio?" << endl;
-				cin >> ID;
-				fflush(stdin);
-				if (ID<1000 || ID>9999){
-					cout << "Los numeros de Identificacion de Servicio son de 4 Digitos "<<endl;
-				}
-			}while(ID < 1000 || ID > 9999);
+					cout << "Cual es el numero de identificacion del servicio?" << endl;
+					getline(cin, ID);
+					stringstream mystream(ID);
+					if(mystream >> z){
+						if(z >= v1 && z <= v2) valido = true;
+					}
+        			if(!valido) cout << "error Solo 4 Digitos Y ningun Caracter" << endl;
+			}while(!valido);
+			valido= false;
 			system("cls");
 			do{
 				cout << "Desea Agregar Tambien Subservicios" << endl;
@@ -67,10 +75,21 @@ string Agregar() {
 				for(k=0;k<i;k++){
 					cout << "Cual es el Nombre del Subservicio?"<< endl;
 					getline(cin, NSub[k]);
-					cout << "Cual es el numero de identificacion del subservicio?"<<endl;
-					getline(cin, IDSub[k]);
-					cout << "Cual es el precio del subservicio?" << endl;
-					getline(cin, PSub[k]);
+					do{
+						cout << "Cual es el numero de identificacion del subservicio?"<<endl;
+						getline(cin, IDSub[k]);
+						stringstream mystream(IDSub[k]);
+						if(mystream >> z){
+							if(z >= v1 && z <= v2) valido = true;
+						}
+						if(!valido) cout << "error Solo 2 Digitos Y ningun Caracter" << endl;
+					}while(!valido);
+					while(true){
+						cout << "Cual es el precio del subservicio?" << endl;
+						getline(cin, PSub[k]);
+						stringstream mystream(PSub[k]);
+						if(mystream >> z) break;
+					};
 					system("cls");
 				}
 			}
