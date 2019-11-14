@@ -18,6 +18,7 @@ struct datos {
 typedef struct datos DATO;
 
 int menu();
+void actualizar();
 
 string Agregar() {
 	ofstream archivo("Agregar.txt",ios::app);
@@ -170,7 +171,52 @@ string Eliminar() {
 		remove("Subservicio.txt");
 		rename("temp.txt","Subservicio.txt");
 	}
+	if(op1==1){
+		ifstream archivo;
+		archivo.open("Servicio.txt");
+		ofstream temp;
+		temp.open("Temp.txt");
+		cout << "cual es la ID del servicio relacionado";
+		cin >> iid;
+		while(archivo.eof()){
+			while(getline(archivo,line)){
+				line.replace(line.find(iid),iid.length(),"");
+				temp << line << endl;
+			}
+		}
+		archivo.close();
+		temp.close();
+		remove("Servicio.txt");
+		rename("temp.txt","Servicio.txt");
+	}
+	actualizar();
 	menu();
+}
+
+void actualizar(){
+	string line,line2;
+	ifstream servicios;
+	servicios.open("Servicios.txt");
+	ifstream subservicios;
+	subservicios.open("Subservicios.txt");
+	ofstream temp;
+	temp.open("temp.txt");
+	while(servicios.eof()){
+		while(getline(servicios,line)){
+			temp << line << endl;
+			while(subservicios.eof()){
+				while(getline(subservicios,line2)){
+					temp << line2 << endl;
+				}
+			}
+		}
+	}
+	servicios.close();
+	subservicios.close();
+	temp.close();
+	remove("Agregar.txt");
+	rename("temp.txt","Agregar.txt");
+	
 }
 
 string Modificar() {
