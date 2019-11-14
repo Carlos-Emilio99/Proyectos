@@ -117,7 +117,7 @@ string Agregar() {
 			}
 			archivo.close();
 		}
-		
+
 	} while (op1 != 2);
 	menu();
 }
@@ -125,12 +125,12 @@ string Agregar() {
 string Consultar() {
 	system("cls");
 	cout << "Ha escogido la opcion de Consulta de servicios\n" << endl;
-		
+
 	FILE *archivo;
 	char caracter;
-	
+
 	archivo = fopen("Agregar.txt","r");
-	
+
 	if(archivo == NULL){
 		cout << "Error en la apertura del archivo" << endl;
 	}
@@ -226,7 +226,7 @@ string Modificar(){
 	system("cls");
 	cout << " por razones de sentido programacional editar un servicio ha sido desabilitado"<< endl;
 	do{
-		cout << " elige la ID que rige al SubServicio a Modificar"<<endl;
+		cout << " elige la ID que rige al SubServicio a Modificar (4 digitos)"<<endl;
 		cin >> ops1;
 		fflush(stdin);
 		if(ops1<1000 || ops1>9999)
@@ -254,7 +254,7 @@ string Modificar(){
 				switch(ops2){
 					case 1:{
 						do{
-							cout << "escribe por que quieres cambiar el ID del servicio"<<endl;
+							cout << "Escribe por cual quieres cambiar el ID del servicio (4 digitos)"<<endl;
 							cin >> ID;
 							fflush(stdin);
 							if(ID<1000 || ID>9999)
@@ -266,11 +266,11 @@ string Modificar(){
 					}
 					case 2:{
 						do{
-							cout << "escribe por que quieres cambiar el SubID"<<endl;
+							cout << "Escribe por cual quieres cambiar el SubID (2 digitos): "<<endl;
 							cin >> SubID;
 							fflush(stdin);
 							if(SubID<01 || SubID>99)
-								cout << " el SUBID se rige es de 2 digitos ";
+								cout << " El SUBID se rige es de 2 digitos ";
 						}while(SubID<01 || SubID>99);
 						archivo << s[0]<<",";
 						archivo <<SubID<<",";
@@ -278,7 +278,7 @@ string Modificar(){
 						break;
 					}
 					case 3:{
-						cout << "escribe por que quieres cambiar el nombre"<<endl;
+						cout << "Escribe por que otro nombre quieres cambiarlo: "<<endl;
 						cin >> Name;
 						fflush(stdin);
 						archivo << s[0]<<","<<s[1]<<",";
@@ -288,11 +288,11 @@ string Modificar(){
 					}
 					case 4:{
 						do{
-							cout << "escribe por que quieres cambiar el precio"<<endl;
+							cout << "Escribe por cual otro precio quieres cambiarlo: "<<endl;
 							cin >> precio;
 							fflush(stdin);
 							if(precio<0)
-								cout << " el precio siempre tiene que ser entero "<<endl;
+								cout << "El precio siempre tiene que ser entero "<<endl;
 						}while(precio<01 || precio>99);
 						archivo << s[0]<<","<<s[1]<<","<<s[3]<<",";
 						archivo <<precio;
@@ -314,7 +314,7 @@ string CrearNota() {
 	ofstream temp("ticket.txt",ios::out);
 	cout << " acabas de Ingresar a la Seccion de Crear Nota "<<endl;
 	do{
-		
+
 	do{
 		cout << "Ingresa la ID del Servicio a Usar"<<endl;
 		cin >> ops1;
@@ -358,7 +358,7 @@ string CrearNota() {
 string ConsultarNota() {
 	system("cls");
 	cout << "Ha escogido la opcion de Consulta de Notas\n" << endl;
-	
+
 	menu();
 }
 
@@ -372,8 +372,8 @@ int menu() {
 	system("cls");
 	int op;
 	do {
-	
-	
+
+
 	cout << "Bienvenido a la Lavanderia\n" << endl;
 	cout << "Seleccione la opcion que desea" << endl;
 	cout << "1.Consulta de Servicios" << endl;
@@ -388,7 +388,7 @@ int menu() {
 	system("cls");
 
 
-	
+
 		switch (op) {
 		case 1:
 			Consultar();
