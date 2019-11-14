@@ -157,7 +157,8 @@ string Eliminar() {
 		ofstream temp;
 		temp.open("Temp.txt");
 		cout << "cual es la ID del servicio relacionado";
-		cin >> iid;
+		cin >> iid;	
+		fflush(stdin);
 		while(archivo.eof()){
 			while(getline(archivo,line))
 			{
@@ -178,6 +179,7 @@ string Eliminar() {
 		temp.open("Temp.txt");
 		cout << "cual es la ID del servicio relacionado";
 		cin >> iid;
+		fflush(stdin);
 		while(archivo.eof()){
 			while(getline(archivo,line)){
 				line.replace(line.find(iid),iid.length(),"");
