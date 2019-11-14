@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <fstream>
-#include <string.h>
+#include <string>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sstream>
@@ -144,8 +144,55 @@ string Consultar() {
 	menu();
 }
 
-string Eliminar() {/////////////////////////////////////////////////////////////////////////////////////7
-	
+string Eliminar() {
+	system("cls");
+	int op1;
+	string line,iid;
+	cout << "quierer borrar [1]-subservicios o un [2]-servicio completo" << endl;
+	cin >> op1;
+	fflush(stdin);
+	if(op1==2){
+		ifstream archivo;
+		archivo.open("Subservicio.txt");
+		ofstream temp;
+		temp.open("Temp.txt");
+		cout << "cual es la ID del servicio relacionado";
+		cin >> iid;
+		fflush(stdin);
+		while(archivo.eof()){
+			while(getline(archivo,line))
+			{
+				line.replace(line.find(iid),iid.length(),"");
+    			temp << line << endl;
+			}
+		}
+
+		archivo.close();
+		temp.close();
+		remove("Subservicio.txt");
+		rename("temp.txt","Subservicio.txt");
+	}
+	if(op1==1){
+		ifstream archivo;
+		archivo.open("Servicio.txt");
+		ofstream temp;
+		temp.open("Temp.txt");
+		cout << "cual es la ID del servicio relacionado";
+		cin >> iid;
+		fflush(stdin);
+		while(archivo.eof()){
+			while(getline(archivo,line)){
+				line.replace(line.find(iid),iid.length(),"");
+				temp << line << endl;
+			}
+		}
+		archivo.close();
+		temp.close();
+		remove("Servicio.txt");
+		rename("temp.txt","Servicio.txt");
+	}
+	actualizar();
+	menu();
 }
 
 string Modificar(){
