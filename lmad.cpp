@@ -145,71 +145,31 @@ string Consultar() {
 
 string Eliminar() {
 	system("cls");
-	char Nombre[40], NSub[20];
-	int ID, Bclave, Sclave, op1, IDSub, op2;
-	cout << "Ha escogido la opcion de Eliminar Servicios" << endl;
-	ifstream archivo;
-	ofstream Temp;
-	archivo.open("Agregar.txt", ios::app);
-	Temp.open("Temp.txt");
-	archivo >> Nombre;
-	bool encontrado = false;
-	cout << "ingrese el ID del servicio que desea eliminar" << endl;
-	cin >> Bclave;
-	system("cls");
-	while (!archivo.eof()) {
-		archivo >> ID;
-		if (ID == Bclave); {
-			encontrado = true;
-			cout << "Nombre...." << Nombre << endl;
-			cout << "ID..." << ID << endl;
-			cout << endl;
-			cout << "Eliminado" << endl;
-		}
-	}
-	archivo >> Nombre;
-	if (encontrado == false) {
-		cout << "el ID no se encontro" << endl;
-	}
-	
-	cout << "Presiona cualquier tecla para continuar" << endl;
-	cin >> op2;
-	fflush(stdin);
-	system("cls");
-	
-	cout << "Tambien quiere eliminar subservicios?" << endl;
-	cout << "1.Si\n2.No" << endl;
+	int op1;
+	string line,iid;
+	cout << "quierer borrar [1]-subservicios o un [2]-servicio completo" << endl;
 	cin >> op1;
 	fflush(stdin);
-	system("cls");
-	if (op1 == 1) {
-		archivo >> NSub;
-		bool encontrado = false;
-		cout << "Ingrese el numero de identificacion del subservicio que desea eliminar" << endl;
-		cin >> Sclave;
-		fflush(stdin);
-		while (!archivo.eof()) {
-			archivo >> IDSub;
-			if (IDSub == Sclave); {
-				encontrado = true;
-				cout << "El Nombre del subservicio es..." << NSub << endl;
-				cout << "El ID del subservicio es ..." << IDSub << endl;
-				cout << endl << endl;
-				cout << "Eliminado..." << endl;
-			}
-			archivo >> NSub;
-			if (encontrado = false) {
-				cout << "El ID no se encontro... " << endl;
-			
+	if(op1==2){
+		ifstream archivo;
+		archivo.open("Subservicio.txt");
+		ofstream temp;
+		temp.open("Temp.txt");
+		cout << "cual es la ID del servicio relacionado";
+		cin >> iid;
+		while(archivo.eof()){
+			while(getline(archivo,line))
+			{
+				line.replace(line.find(iid),iid.length(),"");
+    			temp << line << endl;
 			}
 		}
+		
+		archivo.close();
+		temp.close();
+		remove("Subservicio.txt");
+		rename("temp.txt","Subservicio.txt");
 	}
-	
-	archivo.close();
-	Temp.close();
-	remove("Agregar.txt");
-	rename("Temp.txt", "Agregar.txt");
-	system("cls");
 	menu();
 }
 
