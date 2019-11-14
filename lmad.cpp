@@ -195,6 +195,32 @@ string Eliminar() {
 	menu();
 }
 
+void actualizar(){
+	string line,line2;
+	ifstream servicios;
+	servicios.open("Servicios.txt");
+	ifstream subservicios;
+	subservicios.open("Subservicios.txt");
+	ofstream temp;
+	temp.open("temp.txt");
+	while(servicios.eof()){
+		while(getline(servicios,line)){
+			temp << line << endl;
+			while(subservicios.eof()){
+				while(getline(subservicios,line2)){
+					temp << line2 << endl;
+				}
+			}
+		}
+	}
+	servicios.close();
+	subservicios.close();
+	temp.close();
+	remove("Agregar.txt");
+	rename("temp.txt","Agregar.txt");
+
+}
+
 string Modificar(){
 	int ops1,ops2,ID,SubID,precio,strAsInt;;
 	system("cls");
