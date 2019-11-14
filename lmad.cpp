@@ -356,9 +356,30 @@ string CrearNota() {
 }
 
 string ConsultarNota() {
+	int costo,costo2;
 	system("cls");
 	cout << "Ha escogido la opcion de Consulta de Notas\n" << endl;
-
+	fstream archivo("ticket.txt",ios::in);
+	while(!archivo.eof()){
+		string s[4];
+		string line;
+		getline(archivo,line);
+		if(line.length()>0){
+			stringstream sline(line);
+			for(int i=0;i<4;i++){
+				getline(sline,s[i],',');
+				cout << "|"<<s[i];
+				
+				costo += atoi(s[3].c_str());
+			}
+			cout << "\n"<<endl;
+		}
+	}
+	costo2=costo*.16;
+	costo2=costo-costo2;
+	cout << "el costo total sera de"<<costo<<endl;
+	cout <<"con iva del 16% sera de "<<costo2<<endl;
+	system("pause");
 	menu();
 }
 
